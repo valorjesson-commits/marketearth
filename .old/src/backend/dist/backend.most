@@ -1,0 +1,212 @@
+// Version: 4.0.0
+type AccessControlState__1055712357 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__386906547<Principal, UserRole__635079004>
+  };
+type AccessControlState__9883479 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__386906547<Principal, UserRole__891158324>
+  };
+type ActivityEvent__1039273571 =
+  {
+    amount : Nat;
+    createdAt : Timestamp__301639476;
+    id : Nat;
+    kind : ActivityKind__966777251
+  };
+type ActivityEvent__113951866 =
+  {amount : Nat; createdAt : Int; id : Nat; kind : ActivityKind__890156655};
+type ActivityEvent__423126442 =
+  {amount : Nat; createdAt : Int; id : Nat; kind : ActivityKind__744457411};
+type ActivityKind__744457411 = {#staked; #unstaked; #voted; #workEarned};
+type ActivityKind__890156655 = {#staked; #unstaked; #voted; #workEarned};
+type ActivityKind__966777251 = {#staked; #unstaked; #voted; #workEarned};
+type Data__265875254<K, V> = {var count : Nat__58649523; kvs : [var ?(K, V)]};
+type Internal__161573640<K, V> =
+  {children : [var ?Node__430031793<K, V>]; data : Data__265875254<K, V>};
+type Leaf__1045638083<K, V> = {data : Data__265875254<K, V>};
+type List__1004628775<T> =
+  {
+    var blockIndex : Nat__58649523;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__58649523
+  };
+type List__89170296<T> = List__1004628775<T>;
+type Map__13625999<K, V> =
+  {var root : Node__430031793<K, V>; var size : Nat__58649523};
+type Map__386906547<K, V> = Map__670138087<K, V>;
+type Map__670138087<K, V> = Map__13625999<K, V>;
+type Nat__58649523 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__113079365 =
+  {
+    accessControlState : AccessControlState__1055712357;
+    activity : List__89170296<ActivityEvent__113951866>;
+    proposals : List__89170296<NewProposal__431977979>;
+    state : State__198644946;
+    users : Map__386906547<Principal, User__184311792>;
+    votes : List__89170296<NewVote__25518810>;
+    workEntries : List__89170296<WorkEntry__328209224>
+  };
+type NewActor__326726533 =
+  {
+    accessControlState : AccessControlState__9883479;
+    activity : List__89170296<ActivityEvent__423126442>;
+    proposals : List__89170296<Proposal__739374387>;
+    state : State__973048327;
+    users : Map__386906547<Principal, User__984168593>;
+    votes : List__89170296<Vote__992760227>;
+    workEntries : List__89170296<WorkEntry__1069769173>
+  };
+type NewProposal__431977979 =
+  {
+    createdAt : Int;
+    creator : Principal;
+    description : Text;
+    id : Nat;
+    noVotes : Nat;
+    status : ProposalStatus__474635678;
+    title : Text;
+    yesVotes : Nat
+  };
+type NewVote__25518810 =
+  {createdAt : Int; inFavor : Bool; proposalId : Nat; voter : Principal};
+type Node__430031793<K, V> =
+  {#internal : Internal__161573640<K, V>; #leaf : Leaf__1045638083<K, V>};
+type OldActor__1034099691 = {};
+type OldActor__224227081 =
+  {
+    accessControlState : AccessControlState__1055712357;
+    activity : List__89170296<ActivityEvent__113951866>;
+    proposals : List__89170296<OldProposal__41088823>;
+    state : State__198644946;
+    users : Map__386906547<Principal, User__184311792>;
+    votes : List__89170296<OldVote__68024594>;
+    workEntries : List__89170296<WorkEntry__328209224>
+  };
+type OldProposal__41088823 =
+  {
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    noVotes : Nat;
+    title : Text;
+    yesVotes : Nat
+  };
+type OldVote__68024594 =
+  {inFavor : Bool; proposalId : Nat; voter : Principal; weight : Nat};
+type ProposalStatus__345626594 = {#active; #closed};
+type ProposalStatus__474635678 = {#active; #closed};
+type Proposal__316606909 =
+  {
+    createdAt : Timestamp__301639476;
+    creator : UserId__158757552;
+    description : Text;
+    id : Nat;
+    noVotes : Nat;
+    status : ProposalStatus__345626594;
+    title : Text;
+    yesVotes : Nat
+  };
+type Proposal__739374387 =
+  {
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    noVotes : Nat;
+    title : Text;
+    yesVotes : Nat
+  };
+type State__198644946 =
+  {var nextActivityId : Nat; var nextProposalId : Nat; var nextWorkId : Nat};
+type State__973048327 =
+  {var nextActivityId : Nat; var nextProposalId : Nat; var nextWorkId : Nat};
+type Timestamp__301639476 = Int;
+type UserId__158757552 = Principal;
+type UserRole__635079004 = {#admin; #guest; #user};
+type UserRole__891158324 = {#admin; #guest; #user};
+type UserRole__91647283 = {#admin; #guest; #user};
+type User__184311792 = {meCoins : Nat; stakedMeCoins : Nat; weCoins : Nat};
+type User__640040378 = {meCoins : Nat; stakedMeCoins : Nat; weCoins : Nat};
+type User__984168593 = {meCoins : Nat; stakedMeCoins : Nat; weCoins : Nat};
+type Vote__542398962 =
+  {
+    createdAt : Timestamp__301639476;
+    inFavor : Bool;
+    proposalId : Nat;
+    voter : UserId__158757552
+  };
+type Vote__992760227 =
+  {inFavor : Bool; proposalId : Nat; voter : Principal; weight : Nat};
+type WorkEntry__1069769173 =
+  {
+    coinsEarned : Nat;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    title : Text
+  };
+type WorkEntry__328209224 =
+  {
+    coinsEarned : Nat;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    title : Text
+  };
+type WorkEntry__360581893 =
+  {
+    coinsEarned : Nat;
+    createdAt : Timestamp__301639476;
+    description : Text;
+    id : Nat;
+    title : Text
+  };
+{
+  "20260831_054824" : (_old : OldActor__1034099691) -> NewActor__326726533;
+  "20260831_063000" : (old : OldActor__224227081) -> NewActor__113079365
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__386906547<Principal, UserRole__91647283>
+    };
+  stable activity :
+    {
+      var blockIndex : Nat__58649523;
+      var blocks : [var [var ?ActivityEvent__1039273571]];
+      var elementIndex : Nat__58649523
+    };
+  stable proposals :
+    {
+      var blockIndex : Nat__58649523;
+      var blocks : [var [var ?Proposal__316606909]];
+      var elementIndex : Nat__58649523
+    };
+  stable state :
+    {
+      var nextActivityId : Nat;
+      var nextProposalId : Nat;
+      var nextWorkId : Nat
+    };
+  stable users :
+    {
+      var root : Node__430031793<Principal, User__640040378>;
+      var size : Nat__58649523
+    };
+  stable votes :
+    {
+      var blockIndex : Nat__58649523;
+      var blocks : [var [var ?Vote__542398962]];
+      var elementIndex : Nat__58649523
+    };
+  stable workEntries :
+    {
+      var blockIndex : Nat__58649523;
+      var blocks : [var [var ?WorkEntry__360581893]];
+      var elementIndex : Nat__58649523
+    }
+};

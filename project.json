@@ -1,0 +1,18 @@
+{
+  "overview": "Market Earth Core is a Web3 decentralized governance and tokenomics dashboard where users earn Me-Coins for work, stake them into We-Coins for governance, and vote on proposals via Internet Identity.",
+  "features": [
+    "Earn Me-Coins by performing work",
+    "Stake Me-Coins into We-Coins for governance",
+    "Create and vote on governance proposals",
+    "Track live token balances and Principal ID in the header",
+    "Sign in securely with Internet Identity"
+  ],
+  "category": "productivity",
+  "tags": [
+    "web3",
+    "governance",
+    "tokenomics",
+    "dao"
+  ],
+  "last_updated": "2026-08-31T06:29:20.339Z"
+}

@@ -1,0 +1,144 @@
+type WorkEntry = 
+ record {
+   coinsEarned: nat;
+   createdAt: Timestamp;
+   description: text;
+   id: nat;
+   title: text;
+ };
+type VoteError = 
+ variant {
+   alreadyVoted;
+   notEnoughWeCoins;
+   proposalClosed;
+   proposalNotFound;
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type User = 
+ record {
+   meCoins: nat;
+   stakedMeCoins: nat;
+   weCoins: nat;
+ };
+type Timestamp = int;
+type StakingInfo = 
+ record {
+   meCoins: nat;
+   stakedMeCoins: nat;
+   weCoins: nat;
+ };
+type Result__1 = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type Result_3 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result_2 = 
+ variant {
+   err: CloseError;
+   ok;
+ };
+type Result_1 = 
+ variant {
+   err: CreateError;
+   ok: Proposal;
+ };
+type Result = 
+ variant {
+   err: VoteError;
+   ok;
+ };
+type ProposalStatus = 
+ variant {
+   active;
+   closed;
+ };
+type Proposal = 
+ record {
+   createdAt: int;
+   creator: principal;
+   description: text;
+   id: nat;
+   noVotes: nat;
+   status: ProposalStatus;
+   title: text;
+   yesVotes: nat;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type CreateError = variant {notEnoughWeCoins;};
+type CloseError = 
+ variant {
+   alreadyClosed;
+   notCreator;
+   proposalNotFound;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result_3);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  closeProposal: (proposalId: nat) -> (Result_2);
+  createProposal: (title: text, description: text) -> (Result_1);
+  execute: (qJson: text) -> (Result__1) query;
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getMyProfile: () -> (opt User) query;
+  getMyVotes: () -> (vec record {
+                           nat;
+                           bool;
+                         }) query;
+  getProposal: (id: nat) -> (opt Proposal) query;
+  getProposals: () -> (vec Proposal) query;
+  getStakingInfo: () -> (StakingInfo) query;
+  getWorkHistory: () -> (vec WorkEntry) query;
+  isCallerAdmin: () -> (bool) query;
+  performWork: (title: text, description: text) -> (WorkEntry);
+  schema: () -> (text) query;
+  stakeForWeCoins: (amount: nat) -> ();
+  unstakeWeCoins: (amount: nat) -> ();
+  voteOnProposal: (proposalId: nat, inFavor: bool) -> (Result);
+}

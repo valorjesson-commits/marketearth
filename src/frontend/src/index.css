@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "Geist Mono", monospace;
+    --radius: 0.75rem;
+
+    /* Core surfaces — cool civic off-white */
+    --background: 0.98 0.006 250;
+    --foreground: 0.16 0.02 262;
+    --card: 1 0.002 250;
+    --card-foreground: 0.16 0.02 262;
+    --popover: 1 0.002 250;
+    --popover-foreground: 0.16 0.02 262;
+
+    /* Primary = We-Coins governance indigo (civic action) */
+    --primary: 0.45 0.18 265;
+    --primary-foreground: 0.98 0.005 265;
+
+    --secondary: 0.95 0.012 255;
+    --secondary-foreground: 0.28 0.02 262;
+    --muted: 0.952 0.012 255;
+    --muted-foreground: 0.5 0.015 262;
+
+    /* Accent = Me-Coins earned gold (work value) */
+    --accent: 0.72 0.15 75;
+    --accent-foreground: 0.2 0.04 70;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.005 25;
+    --success: 0.55 0.16 150;
+    --success-foreground: 0.98 0.005 150;
+    --warning: 0.7 0.15 85;
+    --warning-foreground: 0.2 0.04 70;
+
+    --border: 0.9 0.012 255;
+    --input: 0.9 0.012 255;
+    --ring: 0.45 0.18 265;
+
+    /* Dual-token semantic colors for direct component use */
+    --me-coin: 0.72 0.15 75; /* earned gold */
+    --me-coin-soft: 0.93 0.06 80;
+    --we-coin: 0.45 0.18 265; /* governance indigo */
+    --we-coin-soft: 0.94 0.03 265;
+
+    /* Proposal status — Active = governance indigo, Closed = muted neutral */
+    --status-active: 0.45 0.18 265;
+    --status-active-soft: 0.94 0.03 265;
+    --status-closed: 0.5 0.015 262;
+    --status-closed-soft: 0.93 0.01 255;
+
+    /* Vote progress — Yes = governance indigo, No = destructive red */
+    --progress-track: 0.9 0.012 255;
+    --vote-yes: 0.45 0.18 265;
+    --vote-yes-soft: 0.94 0.03 265;
+    --vote-no: 0.55 0.22 25;
+    --vote-no-soft: 0.94 0.04 25;
+
+    --chart-1: 0.45 0.18 265;
+    --chart-2: 0.72 0.15 75;
+    --chart-3: 0.6 0.14 185;
+    --chart-4: 0.6 0.18 150;
+    --chart-5: 0.7 0.15 85;
+
+    --sidebar: 0.985 0.006 250;
+    --sidebar-foreground: 0.16 0.02 262;
+    --sidebar-primary: 0.45 0.18 265;
+    --sidebar-primary-foreground: 0.98 0.005 265;
+    --sidebar-accent: 0.94 0.03 265;
+    --sidebar-accent-foreground: 0.28 0.02 262;
+    --sidebar-border: 0.9 0.012 255;
+    --sidebar-ring: 0.45 0.18 265;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.45 0.18 265),
+      oklch(0.55 0.16 300)
+    );
+    --gradient-gold: linear-gradient(
+      135deg,
+      oklch(0.72 0.15 75),
+      oklch(0.8 0.12 55)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(1 0.002 250),
+      oklch(0.96 0.008 252)
+    );
+  }
+
+  .dark {
+    --background: 0.15 0.02 262;
+    --foreground: 0.95 0.01 250;
+    --card: 0.19 0.022 262;
+    --card-foreground: 0.95 0.01 250;
+    --popover: 0.21 0.024 262;
+    --popover-foreground: 0.95 0.01 250;
+
+    --primary: 0.62 0.17 265;
+    --primary-foreground: 0.15 0.02 262;
+
+    --secondary: 0.24 0.024 262;
+    --secondary-foreground: 0.88 0.01 250;
+    --muted: 0.24 0.024 262;
+    --muted-foreground: 0.56 0.015 255;
+
+    --accent: 0.78 0.15 80;
+    --accent-foreground: 0.15 0.02 70;
+
+    --destructive: 0.65 0.2 25;
+    --destructive-foreground: 0.98 0.005 25;
+    --success: 0.65 0.16 150;
+    --success-foreground: 0.12 0.02 150;
+    --warning: 0.78 0.15 85;
+    --warning-foreground: 0.15 0.02 70;
+
+    --border: 0.29 0.024 262;
+    --input: 0.29 0.024 262;
+    --ring: 0.62 0.17 265;
+
+    --me-coin: 0.78 0.15 80;
+    --me-coin-soft: 0.27 0.05 80;
+    --we-coin: 0.62 0.17 265;
+    --we-coin-soft: 0.26 0.06 265;
+
+    /* Proposal status — Active = governance indigo, Closed = muted neutral */
+    --status-active: 0.62 0.17 265;
+    --status-active-soft: 0.26 0.06 265;
+    --status-closed: 0.56 0.015 255;
+    --status-closed-soft: 0.26 0.02 262;
+
+    /* Vote progress — Yes = governance indigo, No = destructive red */
+    --progress-track: 0.29 0.024 262;
+    --vote-yes: 0.62 0.17 265;
+    --vote-yes-soft: 0.26 0.06 265;
+    --vote-no: 0.65 0.2 25;
+    --vote-no-soft: 0.28 0.06 25;
+
+    --chart-1: 0.62 0.17 265;
+    --chart-2: 0.78 0.15 80;
+    --chart-3: 0.68 0.14 185;
+    --chart-4: 0.65 0.16 150;
+    --chart-5: 0.78 0.15 85;
+
+    --sidebar: 0.17 0.02 262;
+    --sidebar-foreground: 0.95 0.01 250;
+    --sidebar-primary: 0.62 0.17 265;
+    --sidebar-primary-foreground: 0.15 0.02 262;
+    --sidebar-accent: 0.26 0.06 265;
+    --sidebar-accent-foreground: 0.88 0.01 250;
+    --sidebar-border: 0.29 0.024 262;
+    --sidebar-ring: 0.62 0.17 265;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.62 0.17 265),
+      oklch(0.55 0.18 300)
+    );
+    --gradient-gold: linear-gradient(
+      135deg,
+      oklch(0.78 0.15 80),
+      oklch(0.7 0.16 60)
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.19 0.022 262),
+      oklch(0.16 0.02 262)
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-gold {
+    background-image: var(--gradient-gold);
+  }
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+
+  /* Status badges — Active (governance indigo) vs Closed (muted neutral) */
+  .badge-active {
+    background-color: oklch(var(--status-active-soft));
+    color: oklch(var(--status-active));
+    border: 1px solid oklch(var(--status-active) / 0.25);
+  }
+  .badge-closed {
+    background-color: oklch(var(--status-closed-soft));
+    color: oklch(var(--status-closed));
+    border: 1px solid oklch(var(--status-closed) / 0.25);
+  }
+
+  /* Identity header — mono Principal chip */
+  .principal-chip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    background-color: oklch(var(--muted));
+    border: 1px solid oklch(var(--border));
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    color: oklch(var(--muted-foreground));
+  }
+
+  /* Vote progress bars */
+  .progress-track {
+    background-color: oklch(var(--progress-track));
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    border-radius: 9999px;
+    height: 100%;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .progress-fill-yes {
+    background-color: oklch(var(--vote-yes));
+  }
+  .progress-fill-no {
+    background-color: oklch(var(--vote-no));
+  }
+}
